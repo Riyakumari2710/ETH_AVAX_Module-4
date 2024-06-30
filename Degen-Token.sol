@@ -1,5 +1,4 @@
-
-// SPDX-License-Identifier: MIT
+ // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
@@ -10,12 +9,12 @@ contract DegenToken is ERC20, Ownable, ERC20Burnable {
     // Create a mapping to store the redemption values for each choice
     mapping(uint256 => uint256) private redemptionValues;
 
-    constructor() ERC20("DegenToken", "DTK") {
-        // Initialize the redemption values for each choice
-        redemptionValues[1] = 100; // Legendary Sword NFT value = 100
-        redemptionValues[2] = 50;  // Dragon Shield value = 50
-        redemptionValues[3] = 25;  // Magic Potion value = 25
-    }
+   constructor() ERC20("DegenToken", "DTK") Ownable(msg.sender) ERC20Burnable()  {
+     // Initialize the redemption values for each choice
+     redemptionValues[1] = 100;    // Legendary Sword NFT value = 100
+     redemptionValues[2] = 50;     // Dragon Shield value = 50
+     redemptionValues[3] = 25;     // Magic Potion value = 25
+}
 
     function mint(address to, uint256 amount) public onlyOwner {
         _mint(to, amount);
